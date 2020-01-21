@@ -1,4 +1,4 @@
-package com.idv.account;
+package com.idv.authentication;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.idv.account;
+package com.idv.authentication;
 
 import android.content.Context;
 import androidx.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.idv.account.test", appContext.getPackageName());
+        assertEquals("com.idv.authentication.test", appContext.getPackageName());
     }
 }
