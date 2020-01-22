@@ -1,5 +1,6 @@
 package com.idv.authentication.user.service
 
+import com.idv.authentication.user.service.RetrofitModel.AuthRequest
 import com.idv.core.service.ServiceFactory
 import java.io.IOException
 
@@ -7,9 +8,8 @@ class AuthenticatorServiceImpl(factory: ServiceFactory) : AuthenticatorService {
     private val service: AuthenticatorRetrofitService = factory.make(BASE_URL, AuthenticatorRetrofitService::class.java)
     override suspend fun auth(email: String, password: String): Boolean {
         try {
-            val res1 = service.getAll().execute()
 
-            val response = service.auth(email, password).execute()
+            val response = service.auth(AuthRequest(email, password)).execute()
             if (response.isSuccessful)
                 response.body()?.let {
                     return@let true
@@ -26,6 +26,6 @@ class AuthenticatorServiceImpl(factory: ServiceFactory) : AuthenticatorService {
     }
 
     companion object {
-        private const val BASE_URL = "http://177.17.38.249:3000/"
+        private const val BASE_URL = "http://18.188.16.99:3000/"
     }
 }

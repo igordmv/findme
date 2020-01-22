@@ -10,5 +10,5 @@ class LocationModel (
     var id : String? = null,
 
     @SerializedName("coordinates")
-    var coordinates : String? = null
+    var coordinates : ArrayList<String>? = null
     )

@@ -6,10 +6,8 @@ import com.idv.authentication.user.service.UserModel
 internal class ResponseModel(
 
     @SerializedName("token")
-    var token : String? = null
-//    ,
-//
-//    @SerializedName("user")
-//    var user: UserModel? = null
-)
+    var token : String? = null,
+
+    @SerializedName("user")
+    var user: UserModel? = null)
 
