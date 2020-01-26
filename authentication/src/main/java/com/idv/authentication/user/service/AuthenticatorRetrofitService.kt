@@ -15,6 +15,6 @@ internal interface AuthenticatorRetrofitService {
     @GET("/user/get")
     fun getAll() : Call<List<NameModel>>
 
-    @GET("/user/checkAuth")
-    fun checkAuth(@Header("Authorization") token: String) : Call<AuthenticationResponseModel>
+    @GET("/user/checkToken")
+    fun checkToken(@Header("Authorization") token: String) : Call<AuthenticationResponseModel>
 }

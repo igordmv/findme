@@ -10,7 +10,7 @@ interface UserAuthenticator {
     suspend fun auth(email: String, password: String) : Boolean
 
     @Throws(IOException::class)
-    suspend fun checkAuth(token: String) : Boolean
+    suspend fun checkToken(token: String) : Boolean
 
     class Builder(){
 

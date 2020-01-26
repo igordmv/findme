@@ -8,11 +8,11 @@ import java.io.IOException
 class AuthenticatorServiceImpl(factory: ServiceFactory) : AuthenticatorService {
     private val service: AuthenticatorRetrofitService = factory.make(BASE_URL, AuthenticatorRetrofitService::class.java)
 
-    override suspend fun checkAuth(token: String): Boolean {
+    override suspend fun checkToken(token: String): Boolean {
         try {
-            val response = service.checkAuth(token).execute()
+            val response = service.checkToken(token).execute()
             Log.i("IGOR", response.message())
-            return false
+            return(response.body()?.message?.toLowerCase() == "ok")
         } catch (e : IOException){
             e.printStackTrace()
             throw e
@@ -39,6 +39,6 @@ class AuthenticatorServiceImpl(factory: ServiceFactory) : AuthenticatorService {
     }
 
     companion object {
-        private const val BASE_URL = "http://18.188.16.99:3000/"
+        private const val BASE_URL = "http://3.14.29.42:3000/"
     }
 }

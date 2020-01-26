@@ -26,10 +26,8 @@ class SplashActivity : AppCompatActivity() {
             .build()
 
         val sharedPreference = getSharedPreferences(SHARED_PREFERENCE_KEY, Context.MODE_PRIVATE)
-        val token = sharedPreference.getString(AUTHENTICATION_TOKEN, null)
-
+        var token = sharedPreference.getString(AUTHENTICATION_TOKEN, null)
         token?.let { token ->
-            Log.i("IGOR", token)
             runOnBackground {
                 controller?.checkAuth(token)
             }
@@ -46,7 +44,6 @@ class SplashActivity : AppCompatActivity() {
 
     private val authenticationObserver = Observer<Boolean> { authenticated ->
         if(authenticated) {
-            Log.i("IGOR", "LOGADO")
         } else {
             navigateLoginScreen()
         }

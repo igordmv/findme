@@ -20,7 +20,7 @@ internal class SplashController(
 
     fun checkAuth(token: String) = viewModelScope.launch(Dispatchers.IO) {
         try {
-            val authenticated = userAuthenticator.checkAuth(token)
+            val authenticated = userAuthenticator.checkToken(token)
             presenter.presentAuthenticationState(authenticated)
         } catch (e: IOException) {
             presenter.presentErrorState(true)
