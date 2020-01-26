@@ -2,11 +2,10 @@ package com.idv.authentication.user.service
 
 import com.globo.globosatplay.avc.check.service.ResponseModel
 import com.idv.authentication.user.service.RetrofitModel.AuthRequest
+import com.idv.authentication.user.service.RetrofitModel.AuthenticationResponseModel
 import com.idv.authentication.user.service.RetrofitModel.NameModel
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 internal interface AuthenticatorRetrofitService {
 
@@ -15,4 +14,7 @@ internal interface AuthenticatorRetrofitService {
 
     @GET("/user/get")
     fun getAll() : Call<List<NameModel>>
+
+    @GET("/user/checkAuth")
+    fun checkAuth(@Header("Authorization") token: String) : Call<AuthenticationResponseModel>
 }

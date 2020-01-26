@@ -1,11 +1,24 @@
 package com.idv.authentication.user.service
 
+import android.util.Log
 import com.idv.authentication.user.service.RetrofitModel.AuthRequest
 import com.idv.core.service.ServiceFactory
 import java.io.IOException
 
 class AuthenticatorServiceImpl(factory: ServiceFactory) : AuthenticatorService {
     private val service: AuthenticatorRetrofitService = factory.make(BASE_URL, AuthenticatorRetrofitService::class.java)
+
+    override suspend fun checkAuth(token: String): Boolean {
+        try {
+            val response = service.checkAuth(token).execute()
+            Log.i("IGOR", response.message())
+            return false
+        } catch (e : IOException){
+            e.printStackTrace()
+            throw e
+        }
+    }
+
     override suspend fun auth(email: String, password: String): Boolean {
         try {
 

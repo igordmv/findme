@@ -9,7 +9,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.Executor
 
 object RetrofitServiceFactory : ServiceFactory {
-
     private val httpClient by lazy { OkHttpClient() }
     private val converter by lazy { GsonConverterFactory.create() }
     private val executor by lazy {

@@ -15,7 +15,5 @@ class MainActivity : AppCompatActivity() {
 
 
         this.controller = MainController.Builder().build()
-
-        controller.checkAuth("igordmv1995@gmail.com", "malucao101")
     }
 }

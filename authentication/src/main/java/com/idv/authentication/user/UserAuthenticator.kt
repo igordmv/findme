@@ -9,6 +9,9 @@ interface UserAuthenticator {
     @Throws(IOException::class)
     suspend fun auth(email: String, password: String) : Boolean
 
+    @Throws(IOException::class)
+    suspend fun checkAuth(token: String) : Boolean
+
     class Builder(){
 
         private lateinit var factory: ServiceFactory
