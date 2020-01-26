@@ -11,4 +11,27 @@
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
     </style>
 
+    <!-- Login Main Activity -->
+    <style name= "UsernameEditText" parent="">
+        <item name="android:inputType">textEmailAddress</item>
+        <item name="android:hint">@string/username</item>
+        <item name="android:ems">15</item>
+        <item name="android:drawableStart">@drawable/ic_username</item>
+    </style>
+
+    <style name= "PasswordEditText" parent="">
+        <item name="android:layout_marginTop">@dimen/password_edit_text_margin_top</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:hint">@string/password</item>
+        <item name="android:ems">15</item>
+        <item name="android:drawableStart">@drawable/ic_password</item>
+    </style>
+
+    <style name= "LoginButton" parent="">
+        <item name="android:text">@string/login</item>
+        <item name="android:textSize">@dimen/login_button_text_size</item>
+        <item name="android:textColor">@color/login_button_text_color</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+
 </resources>

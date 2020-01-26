@@ -51,6 +51,7 @@ dependencies {
 
     implementation lifecycle_ext
     implementation lifecycle_viewmodel_ktx
+    implementation cardview
 
     testImplementation junit
     testImplementation kotlin_coroutines_test

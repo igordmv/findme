@@ -26,7 +26,6 @@ ext {
     multidex                 = "androidx.multidex:multidex:2.0.1"
     core_ktx                 = "androidx.core:core-ktx:1.0.2"
 
-
     design                   = "com.google.android.material:material:1.0.0"
     cast                     = "com.google.android.gms:play-services-cast-framework:16.0.3"
     iid                      = "com.google.android.gms:play-services-iid:16.0.0"
