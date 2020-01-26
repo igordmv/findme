@@ -20,6 +20,7 @@
         <item name="android:hint">@string/username</item>
         <item name="android:ems">15</item>
         <item name="android:drawableStart">@drawable/ic_username</item>
+        <item name="android:textColor">@color/edit_text_color</item>
     </style>
 
     <style name= "PasswordEditText" parent="">
@@ -28,6 +29,7 @@
         <item name="android:hint">@string/password</item>
         <item name="android:ems">15</item>
         <item name="android:drawableStart">@drawable/ic_password</item>
+        <item name="android:textColor">@color/edit_text_color</item>
     </style>
 
     <style name= "LoginButton" parent="">
