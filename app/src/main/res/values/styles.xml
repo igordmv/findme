@@ -11,6 +11,9 @@
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
     </style>
 
+    <style name="MainTheme" parent="Theme.AppCompat.NoActionBar">
+    </style>
+
     <!-- Login Main Activity -->
     <style name= "UsernameEditText" parent="">
         <item name="android:inputType">textEmailAddress</item>
