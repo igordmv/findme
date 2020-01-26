@@ -40,6 +40,7 @@
 
     <androidx.cardview.widget.CardView android:layout_width="@dimen/cardview_width"
                                        android:layout_height="@dimen/cardview_height"
+                                       android:id="@+id/loginCardView"
                                        android:layout_marginTop="@dimen/cardview_margin_top"
                                        app:cardCornerRadius="@dimen/cardview_card_border_radius"
                                        app:cardBackgroundColor="@color/cardview_background_color"
@@ -57,5 +58,16 @@
                     style="@style/LoginButton"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="@dimen/loading_width"
+            android:layout_height="@dimen/loading_height"
+            style="@style/LoginProgressBar"
+            app:layout_constraintTop_toBottomOf="@+id/loginCardView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:visibility="visible"
+                             />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

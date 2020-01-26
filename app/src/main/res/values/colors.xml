@@ -7,4 +7,7 @@
     <color name="cardview_background_color">#4056d6</color>
     <color name="login_button_text_color">#ffffff</color>
     <color name="edit_text_color">#000000</color>
+    <color name="progress_bar_start_color">#ea2a2a</color>
+    <color name="progress_bar_center_color">#d841a3</color>
+    <color name="progress_bar_end_color">#4056d6</color>
 </resources>

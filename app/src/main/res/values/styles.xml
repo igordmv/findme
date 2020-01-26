@@ -1,6 +1,15 @@
 <resources>
 
     <!-- Base application theme. -->
+    <style name="Theme.Base.NoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:progressBarStyle">@style/BaseProgressBarStyle</item>
+    </style>
+
+    <style name="BaseProgressBarStyle" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:progressDrawable">@drawable/rotate_shape_gradient_progressbar</item>
+        <item name="android:indeterminateDrawable">@drawable/rotate_shape_gradient_progressbar</item>
+    </style>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -8,10 +17,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="SplashTheme" parent="Theme.Base.NoActionBar">
     </style>
 
-    <style name="MainTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="MainTheme" parent="Theme.Base.NoActionBar">
     </style>
 
     <!-- Login Main Activity -->
@@ -37,6 +46,13 @@
         <item name="android:textSize">@dimen/login_button_text_size</item>
         <item name="android:textColor">@color/login_button_text_color</item>
         <item name="android:layout_centerInParent">true</item>
+    </style>
+
+    <style name="LoginProgressBar" parent="BaseProgressBarStyle">
+        <item name="android:indeterminate">true</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/login_progress_bar_margin_top</item>
+        <item name="android:visibility">gone</item>
     </style>
 
 </resources>
