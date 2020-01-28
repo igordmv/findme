@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply from: rootProject.projectDir.absolutePath + "/dependencies.gradle"
@@ -33,24 +33,15 @@ android {
     }
 }
 
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':core')
-    implementation project(path: ':authentication')
-    implementation project(path: ':seller')
-    implementation project(path: ':admin')
 
     implementation kotlin_coroutines
     implementation kotlin
     implementation app_compat
-    implementation retrofit
-    implementation retrofit_converter
-
     implementation constraint_layout
-
-    implementation lifecycle_ext
-    implementation lifecycle_viewmodel_ktx
-    implementation cardview
 
     testImplementation junit
     testImplementation kotlin_coroutines_test

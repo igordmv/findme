@@ -1,6 +1,7 @@
 package com.idv.authentication.user.get
 
 import com.idv.authentication.user.service.AuthenticatorServiceImpl
+import com.idv.authentication.user.service.mapper.UserAuthenticatorMapper
 import com.idv.core.service.ServiceFactory
 import java.io.IOException
 
@@ -21,8 +22,9 @@ interface UserAuthenticatorGetter {
         }
 
         fun build() : UserAuthenticatorGetter {
+            val mapper = UserAuthenticatorMapper
             val service = AuthenticatorServiceImpl(factory)
-            return UserAuthenticatorGetterImpl(service)
+            return UserAuthenticatorGetterImpl(service, mapper)
         }
     }
 

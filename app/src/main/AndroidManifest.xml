@@ -24,6 +24,16 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name="com.idv.admin.view.AdminActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/Theme.Base.NoActionBar">
+        </activity>
+
+        <activity android:name="com.idv.seller.view.SellerActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/Theme.Base.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

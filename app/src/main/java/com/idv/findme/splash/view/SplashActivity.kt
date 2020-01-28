@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.idv.admin.view.AdminActivity
 import com.idv.core.extensions.runOnBackground
 import com.idv.findme.R
 import com.idv.findme.splash.SplashController
@@ -18,7 +19,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
+        Thread.sleep(1000)
         this.controller = SplashController
             .Builder()
             .setActivity(this)
@@ -37,25 +38,11 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateLoginScreen() {
-        val mainIntent = Intent(this@SplashActivity, MainActivity::class.java)
-        startActivity(mainIntent)
-        finish()
-    }
-
-    private fun navigateSellerScreen() {
-        val mainIntent = Intent(this@SplashActivity, SellerActivity::class.java)
-        startActivity(mainIntent)
-        finish()
-    }
-
     private val authenticationObserver = Observer<UserAuthenticatorViewModel> { userAuthenticatorViewModel ->
         if(userAuthenticatorViewModel.authenticated) {
             when(userAuthenticatorViewModel.userType){
                 AccountTypeViewModel.SELLER ->  navigateSellerScreen()
-                AccountTypeViewModel.ADMIN -> {
-
-                }
+                AccountTypeViewModel.ADMIN -> navigateAdminScreen()
             }
         } else {
             navigateLoginScreen()
@@ -68,6 +55,24 @@ class SplashActivity : AppCompatActivity() {
         } else {
 
         }
+    }
+
+    private fun navigateLoginScreen() {
+        val mainIntent = Intent(this@SplashActivity, MainActivity::class.java)
+        startActivity(mainIntent)
+        finish()
+    }
+
+    private fun navigateSellerScreen() {
+        val mainIntent = Intent(this@SplashActivity, SellerActivity::class.java)
+        startActivity(mainIntent)
+        finish()
+    }
+
+    private fun navigateAdminScreen() {
+        val mainIntent = Intent(this@SplashActivity, AdminActivity::class.java)
+        startActivity(mainIntent)
+        finish()
     }
 
     companion object {

@@ -5,7 +5,7 @@ import com.idv.authentication.user.service.UserModel
 
 internal class AuthenticationResponseModel {
 
-    @SerializedName("messageUserModel")
+    @SerializedName("message")
     var message: String? = null
 
     @SerializedName("user")
