@@ -3,23 +3,23 @@ package com.idv.findme.splash.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.idv.admin.view.AdminActivity
 import com.idv.core.extensions.runOnBackground
-import com.idv.findme.R
 import com.idv.findme.splash.SplashController
 import com.idv.findme.view.MainActivity
 import com.idv.seller.view.SellerActivity
+import android.os.Handler
+import com.idv.findme.R
+
 
 class SplashActivity : AppCompatActivity() {
     private var controller: SplashController? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        Thread.sleep(1000)
+
         this.controller = SplashController
             .Builder()
             .setActivity(this)
@@ -29,13 +29,16 @@ class SplashActivity : AppCompatActivity() {
 
         val sharedPreference = getSharedPreferences(SHARED_PREFERENCE_KEY, Context.MODE_PRIVATE)
         var token = sharedPreference.getString(AUTHENTICATION_TOKEN, null)
-        token?.let { token ->
-            runOnBackground {
-                controller?.checkAuth(token)
+
+        Handler().postDelayed( {
+            token?.let { token ->
+                runOnBackground {
+                    controller?.checkAuth(token)
+                }
+            } ?: run {
+                navigateLoginScreen()
             }
-        } ?: run {
-            navigateLoginScreen()
-        }
+        }, 3 * SECONDS)
     }
 
     private val authenticationObserver = Observer<UserAuthenticatorViewModel> { userAuthenticatorViewModel ->
@@ -78,5 +81,6 @@ class SplashActivity : AppCompatActivity() {
     companion object {
         const val SHARED_PREFERENCE_KEY: String = "SHARED_PREFERENCE_KEY"
         const val AUTHENTICATION_TOKEN: String = "AUTHENTICATION_TOKEN"
+        const val SECONDS : Long = 1000
     }
 }
