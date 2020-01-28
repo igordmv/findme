@@ -1,5 +1,5 @@
 include ':app'
 include ':core'
 include ':authentication'
-
+include ':seller'
 

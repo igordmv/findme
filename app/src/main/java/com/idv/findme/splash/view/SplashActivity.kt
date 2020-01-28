@@ -10,6 +10,7 @@ import com.idv.core.extensions.runOnBackground
 import com.idv.findme.R
 import com.idv.findme.splash.SplashController
 import com.idv.findme.view.MainActivity
+import com.idv.seller.view.SellerActivity
 
 class SplashActivity : AppCompatActivity() {
     private var controller: SplashController? = null
@@ -42,8 +43,20 @@ class SplashActivity : AppCompatActivity() {
         finish()
     }
 
-    private val authenticationObserver = Observer<Boolean> { authenticated ->
-        if(authenticated) {
+    private fun navigateSellerScreen() {
+        val mainIntent = Intent(this@SplashActivity, SellerActivity::class.java)
+        startActivity(mainIntent)
+        finish()
+    }
+
+    private val authenticationObserver = Observer<UserAuthenticatorViewModel> { userAuthenticatorViewModel ->
+        if(userAuthenticatorViewModel.authenticated) {
+            when(userAuthenticatorViewModel.userType){
+                AccountTypeViewModel.SELLER ->  navigateSellerScreen()
+                AccountTypeViewModel.ADMIN -> {
+
+                }
+            }
         } else {
             navigateLoginScreen()
         }

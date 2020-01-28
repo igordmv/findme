@@ -1,5 +1,6 @@
 package com.idv.authentication.user.service
 
+import com.idv.authentication.user.service.RetrofitModel.AuthenticationResponseModel
 import java.io.IOException
 
 internal interface AuthenticatorService {
@@ -7,5 +8,5 @@ internal interface AuthenticatorService {
     suspend fun auth(email: String, password: String): Boolean
 
     @Throws(IOException::class)
-    suspend fun checkToken(token: String) : Boolean
+    suspend fun checkToken(token: String) : AuthenticationResponseModel
 }

@@ -1,16 +1,16 @@
-package com.idv.authentication.user
+package com.idv.authentication.user.get
 
 import com.idv.authentication.user.service.AuthenticatorServiceImpl
 import com.idv.core.service.ServiceFactory
 import java.io.IOException
 
-interface UserAuthenticator {
+interface UserAuthenticatorGetter {
 
     @Throws(IOException::class)
     suspend fun auth(email: String, password: String) : Boolean
 
     @Throws(IOException::class)
-    suspend fun checkToken(token: String) : Boolean
+    suspend fun checkToken(token: String) : UserAuthenticator
 
     class Builder(){
 
@@ -20,9 +20,9 @@ interface UserAuthenticator {
             this.factory = factory
         }
 
-        fun build() : UserAuthenticator {
+        fun build() : UserAuthenticatorGetter {
             val service = AuthenticatorServiceImpl(factory)
-            return UserAuthenticatorImpl(service)
+            return UserAuthenticatorGetterImpl(service)
         }
     }
 

@@ -2,18 +2,23 @@ package com.idv.authentication.user.service
 
 import android.util.Log
 import com.idv.authentication.user.service.RetrofitModel.AuthRequest
+import com.idv.authentication.user.service.RetrofitModel.AuthenticationResponseModel
 import com.idv.core.service.ServiceFactory
 import java.io.IOException
 
-class AuthenticatorServiceImpl(factory: ServiceFactory) : AuthenticatorService {
+internal class AuthenticatorServiceImpl(factory: ServiceFactory) : AuthenticatorService {
     private val service: AuthenticatorRetrofitService = factory.make(BASE_URL, AuthenticatorRetrofitService::class.java)
 
-    override suspend fun checkToken(token: String): Boolean {
+    override suspend fun checkToken(token: String): AuthenticationResponseModel {
         try {
             val response = service.checkToken(token).execute()
             Log.i("IGOR", response.message())
-            return(response.body()?.message?.toLowerCase() == "ok")
-        } catch (e : IOException){
+            return response.body()!!
+        }
+        catch(e : Exception){
+            throw IOException(e.message)
+        }
+        catch (e : IOException){
             e.printStackTrace()
             throw e
         }
