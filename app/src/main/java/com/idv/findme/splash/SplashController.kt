@@ -11,6 +11,7 @@ import com.idv.findme.splash.view.SplashPresenter
 import com.idv.findme.splash.view.SplashPresenterImpl
 import com.idv.findme.splash.view.UserAuthenticatorViewModel
 import com.idv.findme.splash.view.mapper.SplashMapper
+import com.idv.shared_preference.get.SharedPreferenceGetter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -19,6 +20,7 @@ import java.lang.ref.WeakReference
 internal class SplashController(
     private val userAuthenticator: UserAuthenticatorGetter,
     private val presenter: SplashPresenter,
+    private val sharedPreferenceGetter : SharedPreferenceGetter?,
     private val navigator: Navigator
 ) : ViewModel() {
 
@@ -29,6 +31,13 @@ internal class SplashController(
         } catch (e: IOException) {
             presenter.presentErrorState(true)
         }
+    }
+
+    fun getToken() : String? {
+        sharedPreferenceGetter?.let {
+            return sharedPreferenceGetter.getToken()
+        }
+        return null
     }
 
     fun sellerAuthenticatedUserLoggedIn() = viewModelScope.launch(Dispatchers.IO){
@@ -69,7 +78,8 @@ internal class SplashController(
                 presenter.getAuthenticationObservable().observe(activity, authenticationObserver)
                 presenter.getErrorObservable().observe(activity, errorObserver)
                 val userAuthenticator = UserAuthenticatorGetter.Builder().setRetrofitFactory(RetrofitServiceFactory).build()
-                return SplashController(userAuthenticator, presenter, navigator)
+                val sharedPreferenceGetter = SharedPreferenceGetter.Builder().setContext(activity).build()
+                return SplashController(userAuthenticator, presenter, sharedPreferenceGetter, navigator)
             }
             return null
         }

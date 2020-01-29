@@ -39,6 +39,7 @@ dependencies {
     implementation project(path: ':authentication')
     implementation project(path: ':seller')
     implementation project(path: ':admin')
+    implementation project(path: ':shared-preference')
 
     implementation kotlin_coroutines
     implementation kotlin

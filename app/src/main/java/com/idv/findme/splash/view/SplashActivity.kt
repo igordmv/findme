@@ -1,18 +1,12 @@
 package com.idv.findme.splash.view
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.idv.admin.view.AdminActivity
 import com.idv.core.extensions.runOnBackground
-import com.idv.findme.splash.SplashController
-import com.idv.findme.view.MainActivity
-import com.idv.seller.view.SellerActivity
-import android.os.Handler
 import com.idv.findme.R
-import com.idv.findme.navigator.Navigator
+import com.idv.findme.splash.SplashController
 
 
 class SplashActivity : AppCompatActivity() {
@@ -29,8 +23,7 @@ class SplashActivity : AppCompatActivity() {
             .setErrorObserver(errorObserver)
             .build()
 
-        val sharedPreference = getSharedPreferences(SHARED_PREFERENCE_KEY, Context.MODE_PRIVATE)
-        var token = sharedPreference.getString(AUTHENTICATION_TOKEN, null)
+        var token = controller?.getToken()
 
         Handler().postDelayed({
             token?.let { token ->
