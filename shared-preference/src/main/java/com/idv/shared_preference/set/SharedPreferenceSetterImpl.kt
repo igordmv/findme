@@ -5,7 +5,7 @@ import com.idv.shared_preference.get.SharedPreferenceGetterImpl
 import java.lang.ref.WeakReference
 import com.idv.shared_preference.get.SharedPreferenceGetterImpl.Companion.AUTHENTICATION_TOKEN
 
-class SharedPreferenceSetterImpl(context: Context) : SharedPreferenceSetter {
+internal class SharedPreferenceSetterImpl(context: Context) : SharedPreferenceSetter {
 
     private val weakContext = WeakReference(context)
 

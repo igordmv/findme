@@ -10,6 +10,7 @@ import com.idv.findme.splash.view.SplashActivity
 import com.idv.findme.splash.view.UserAuthenticatorViewModel
 import com.idv.findme.view.MainActivity
 import com.idv.findme.view.MainPresenter
+import com.idv.shared_preference.set.SharedPreferenceSetter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -18,6 +19,7 @@ import java.lang.ref.WeakReference
 internal class MainController(
     private val userAuthenticator: UserAuthenticatorGetter,
     private val presenter: MainPresenter,
+    private val sharedPreferenceSetter : SharedPreferenceSetter?,
     private val navigator: Navigator
 ) : ViewModel() {
 
@@ -42,6 +44,12 @@ internal class MainController(
 
     fun userNotAuthenticated() = viewModelScope.launch(Dispatchers.IO){
         navigator.navigateLoginScreen()
+    }
+
+    fun setToken(token : String) {
+        sharedPreferenceSetter?.let {
+            it.setToken(token)
+        }
     }
 
     class Builder() {
@@ -80,7 +88,9 @@ internal class MainController(
                 val userAuthenticator =
                     UserAuthenticatorGetter.Builder().setRetrofitFactory(RetrofitServiceFactory).build()
 
-                return MainController(userAuthenticator, presenter, navigator)
+                val sharedPreferenceSetter = SharedPreferenceSetter.Builder().setContext(activity).build()
+
+                return MainController(userAuthenticator, presenter, sharedPreferenceSetter, navigator)
             }
             return null
         }
