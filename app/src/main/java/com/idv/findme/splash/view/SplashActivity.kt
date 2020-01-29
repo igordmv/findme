@@ -64,7 +64,6 @@ class SplashActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val SHARED_PREFERENCE_KEY: String = "SHARED_PREFERENCE_KEY"
         const val AUTHENTICATION_TOKEN: String = "AUTHENTICATION_TOKEN"
         const val SECONDS: Long = 1000
     }

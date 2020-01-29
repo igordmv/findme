@@ -65,7 +65,6 @@ internal class SplashController(
             val presenter = SplashPresenter.Builder().setMapper(mapper).build()
             var activity = activityRef.get()
             activity?.let { activity ->
-
                 val navigator = Navigator.Builder().setContext(activity).build()
                 presenter.getAuthenticationObservable().observe(activity, authenticationObserver)
                 presenter.getErrorObservable().observe(activity, errorObserver)
