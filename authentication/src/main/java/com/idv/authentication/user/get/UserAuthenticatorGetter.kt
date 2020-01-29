@@ -8,7 +8,7 @@ import java.io.IOException
 interface UserAuthenticatorGetter {
 
     @Throws(IOException::class)
-    suspend fun auth(email: String, password: String) : Boolean
+    suspend fun auth(username: String, password: String) : UserAuthenticator
 
     @Throws(IOException::class)
     suspend fun checkToken(token: String) : UserAuthenticator

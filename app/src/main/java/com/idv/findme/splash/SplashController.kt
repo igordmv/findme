@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.idv.authentication.user.get.UserAuthenticatorGetter
 import com.idv.core.service.RetrofitServiceFactory
+import com.idv.findme.navigator.Navigator
 import com.idv.findme.splash.view.SplashActivity
 import com.idv.findme.splash.view.SplashPresenter
 import com.idv.findme.splash.view.SplashPresenterImpl
@@ -17,7 +18,8 @@ import java.lang.ref.WeakReference
 
 internal class SplashController(
     private val userAuthenticator: UserAuthenticatorGetter,
-    private val presenter: SplashPresenter
+    private val presenter: SplashPresenter,
+    private val navigator: Navigator
 ) : ViewModel() {
 
     fun checkAuth(token: String) = viewModelScope.launch(Dispatchers.IO) {
@@ -27,6 +29,18 @@ internal class SplashController(
         } catch (e: IOException) {
             presenter.presentErrorState(true)
         }
+    }
+
+    fun sellerAuthenticatedUserLoggedIn() = viewModelScope.launch(Dispatchers.IO){
+        navigator.navigateSellerScreen()
+    }
+
+    fun adminAuthenticatedUserLoggedIn() = viewModelScope.launch(Dispatchers.IO){
+        navigator.navigateAdminScreen()
+    }
+
+    fun userNotAuthenticated() = viewModelScope.launch(Dispatchers.IO){
+        navigator.navigateLoginScreen()
     }
 
     class Builder {
@@ -48,13 +62,15 @@ internal class SplashController(
 
         fun build(): SplashController? {
             val mapper = SplashMapper
-            val presenter = SplashPresenterImpl(mapper)
+            val presenter = SplashPresenter.Builder().setMapper(mapper).build()
             var activity = activityRef.get()
             activity?.let { activity ->
+
+                val navigator = Navigator.Builder().setContext(activity).build()
                 presenter.getAuthenticationObservable().observe(activity, authenticationObserver)
                 presenter.getErrorObservable().observe(activity, errorObserver)
                 val userAuthenticator = UserAuthenticatorGetter.Builder().setRetrofitFactory(RetrofitServiceFactory).build()
-                return SplashController(userAuthenticator, presenter)
+                return SplashController(userAuthenticator, presenter, navigator)
             }
             return null
         }

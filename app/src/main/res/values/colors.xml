@@ -10,4 +10,6 @@
     <color name="progress_bar_start_color">#ea2a2a</color>
     <color name="progress_bar_center_color">#d841a3</color>
     <color name="progress_bar_end_color">#4056d6</color>
+    <color name="warm_grey">#7a7a7a</color>
+    <color name="gray_scale_06">#454545</color>
 </resources>

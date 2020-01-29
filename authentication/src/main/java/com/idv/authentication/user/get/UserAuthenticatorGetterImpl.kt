@@ -10,5 +10,5 @@ internal class UserAuthenticatorGetterImpl(private val service: AuthenticatorSer
     override suspend fun checkToken(token: String): UserAuthenticator = mapper.map(service.checkToken(token))
 
     @Throws(IOException::class)
-    override suspend fun auth(email: String, password: String): Boolean = service.auth(email, password)
+    override suspend fun auth(username: String, password: String): UserAuthenticator = mapper.map(service.auth(username, password))
 }
